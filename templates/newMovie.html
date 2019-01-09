@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+	<div class = 'title'>
+	<h1>New Movie Page</h1>
+
+	<div class = 'content'>
+		<form action="{{ url_for('newMovie', movietype_id=movietype_id)}}" method = 'post'>
+			<dl>
+				<p><dt>Name:</dt>
+					<dd><input type ='text' size='30' name='name' required>**</dd></p>
+        <p><dt>Storyline:</dt>
+          <dd><textarea name = 'Storyline' rows='10' cols='50' required></textarea>**</dd></p>
+        <p><dt>Link:</dt>
+          <dd><input type = 'text' size = '80' name='link' required>**</dd></p>
+        <p><dt>Director:</dt>
+          <dd><input type = 'text' size = '50' name='Director' required>**</dd></p>
+        <p><dt>Stars:</dt>
+          <dd><input type = 'text' size = '100' name='stars' required>**</dd></p>
+        <p><dt>Release:</dt>
+          <dd><input type = 'text' size = '25' name='release' required>**</dd></p>
+			</dl>
+
+		<p>** required field <br>
+
+		<input type='submit' value='Add'>
+		<button onclick="goBack()">Go Back</button>
+
+		<script>
+		function goBack() {
+			window.history.back();
+		}
+		</script>
+		</form>
+	</div>
+{%endblock%}

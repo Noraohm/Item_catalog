@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<form action="{{ url_for('movieList',movietype_id=movietype.id, list_id=list_id)}}" method = 'post'>
+
+	<div class = 'content'>
+		<h1>{{ movietype.name }}</h1></div>
+
+		<br>
+		<br>
+		<h2><a href = '{{url_for('newMovie', movietype_id = movietype.id) }}'>Add New Movie</a></h2>
+
+		<div class = 'flash'>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<ul>
+				{% for message in messages %}
+				<li> <strong> {{ message }} </strong> </li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			{% endwith %}
+		</div>
+	</div>
+      <br>
+
+		  {% for l in movielist %}
+		<div class = 'MovieInfo'>
+		<span class = 'name'><p>Movie Name: ("{{l.name}}")</p></span>
+		<div class = 'restinfo'>
+			<p>Storyline: "{{l.Storyline}}" </p>
+			<p>Director: ({{l.Director}}) </p>
+			<p>stars: ({{l.stars}})</p>
+			<p>release: ({{l.release}})</p>
+		</div><br>
+			<div class = 'link'>
+				<iframe width="560" height="315" src="{{l.link}}" frameborder="0"
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<br><br><br>
+		  </div>
+		  </div>
+      <br>
+      <div class = "modifyPane">
+		  <a href='{{url_for('editMovieList',movietype_id = movietype.id, list_id=l.id)}}' >Edit the movie OR</a>
+		  <a href='{{url_for('deleteMovieList', movietype_id = movietype.id, list_id=l.id)}}'> Delete it</a><br><br>
+			</div>
+
+
+		   {% endfor %}
+
+		<a href="/Mainpage/"> Back to Main Page</a>
+
+		</div>
+		</div>
+		</form>
+{%endblock%}

@@ -1,0 +1,74 @@
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+img{
+  text-align: left;
+}
+
+/* The background is from google search */
+body {
+  background-image: url("background.jpg");
+  background-repeat: repeat-x;
+  text-align: center;
+  background-size: cover;
+  height: 100%;
+  font-family: Tahoma;
+}
+
+.glyphicon glyphicon-home{
+
+text-align: left;
+}
+
+a:link {
+  color: black;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+
+/* mouse over link */
+a:hover {
+  color: red;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+.name {
+  font-family:Impact;
+  font-size: 20px;
+  color:red;
+}
+
+.content{
+font-family: Tahoma;
+font-size:60px;
+color: #660066;
+font-weight: bold;
+}
+
+.restinfo{
+  font-family: Georgia;
+  font-size: 18px;
+  background-color: black;
+  color: white;
+  width: 550px;
+  height: 300px;
+  border: 1px solid purple;
+  padding: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}

@@ -1,0 +1,76 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<!-- LOAD pre-requisites for Google sign in -->
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+	<!-- END pre-requisites for Google sign in -->
+
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main collection">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>Log in</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1 padding-top">
+			<!-- Google Plus sign in -->
+
+			<div id="signinButton">
+				<span class="g-signin"
+					data-scope="openid email"
+					data-clientid="880681702400-44vk7jr85cg8qv45a3kulvl94kr33usd.apps.googleusercontent.com"
+					data-redirecturi="postmessage"
+					data-accesstype="offline"
+					data-cookiepolicy="single_host_origin"
+					data-callback="signInCallback"
+					data-approvalprompt="force">
+				</span>
+			</div>
+			<div id="result"></div>
+		</div>
+	</div>
+
+	<script>
+
+		function signInCallback(authResult) {
+
+			if (authResult['code']) {
+
+				$('#signinButton').attr('style', 'display: none');
+
+				$.ajax({
+
+					type: 'POST',
+
+					url: '/gconnect?state={{STATE}}',
+					processData: false,
+
+					contentType: 'application/octet-stream; charset=utf-8',
+
+					data: authResult['code'],
+
+					success: function(result) {
+						if (result) {
+							$('#result').html('Login Successful!</br>' + result + '</br>Redirecting...')
+							setTimeout(function() {
+								window.location.href = "/Mainpage/";
+							}, 4000);
+						} else if (authResult['error']) {
+							console.log('There was an error: ' + authResult['error']);
+						} else {
+							$('#result').html('Failed to make a server side call. Check your configuration and console.');
+						}
+					}
+
+				});
+			}
+		}
+	</script>
+	<!-- End Google Plus sign in -->
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class = 'content'>
+		<h1> Edit The List </h1>
+
+    <form action="{{ url_for('editMovieList',movietype_id=movietype_id, list_id=list_id)}}" method = 'post'>
+			<dl>
+				<p><dt>Name:</dt>
+					<dd><input type ='text' size='30' name='name' placeholder = '{{Mlist.name }}'></dd></p>
+				<p><dt>Storyline:</dt>
+					<dd><textarea name = 'Storyline' rows='10' cols='50' ></textarea></dd></p>
+				<p><dt>Link:</dt>
+					<dd><input type = 'text' size = '80' name='link' ></dd></p>
+				<p><dt>Director:</dt>
+					<dd><input type = 'text' size = '50' name='Director' ></dd></p>
+				<p><dt>Stars:</dt>
+					<dd><input type = 'text' size = '100' name='stars' ></dd></p>
+		    <p><dt>Release:</dt>
+					<dd><input type = 'text' size = '25' name='release' ></dd></p>
+		    <p><dt>Added by:</dt>
+					<dd><input type = 'text' size = '25' name='UserName'>*</dd>
+			</dl>
+    <input type='submit' value='Edit'>
+		</form>
+
+
+		<button onclick="goBack()">Cancel</button>
+		<script>
+		function goBack() {
+			window.history.back();
+		}
+		</script>
+	</div>
+{%endblock%}
